@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrival (2016) | Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ===== CSS incrustado ===== -->
+  <style>
+    /* Versión 1: solo estructura. Los estilos llegan en la versión 2. */
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }
+    svg, canvas { max-width: 160px; max-height: 160px; }
+  </style>
+</head>
+<body>
+  <div class="grano" aria-hidden="true"></div>
+
+  <header>
+    <nav>
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M32 9 C45 9, 55 19, 55 32 C55 45, 45 55, 32 55 C19 55, 9 45, 9 32 C9 22, 15 13, 24 10" stroke="#e7e9e8" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M49 18 C55 15, 58 11, 55 8" stroke="#b78456" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M16 47 C11 50, 10 55, 14 57" stroke="#e7e9e8" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        ARRIVAL
+      </a>
+      <ul>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="personajes.html">Personajes</a></li>
+        <li><a href="lenguaje.html">El lenguaje</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="portada">
+    <div class="bruma" aria-hidden="true"></div>
+
+    <!-- Siluetas escalonadas del valle de Montana entre la niebla -->
+    <svg class="paisaje-svg" viewBox="0 0 1440 360" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,360 L0,195 Q190,140 380,188 T820,170 T1240,182 Q1360,162 1440,185 L1440,360 Z" fill="#171d20" opacity="0.72"/>
+      <path d="M0,360 L0,248 Q260,208 540,246 T1040,224 T1440,252 L1440,360 Z" fill="#101417" opacity="0.9"/>
+      <path d="M0,360 L0,295 Q320,270 680,296 T1440,288 L1440,360 Z" fill="#0c0e10"/>
+    </svg>
+
+    <div class="contenedor-nave" id="monolito" aria-hidden="true">
+      <div class="nave"></div>
+    </div>
+
+    <div class="portada-texto">
+      <p class="portada-meta">Una película de Denis Villeneuve · 2016</p>
+      <h1>ARRIVAL</h1>
+      <p class="portada-descripcion">Doce naves aparecen sobre la Tierra. Una lingüista debe aprender a hablar con quienes vienen dentro antes de que el mundo pierda la paciencia.</p>
+      <p class="contador" id="contador"></p>
+    </div>
+    <div class="linea-scroll" aria-hidden="true"></div>
+  </div>
+
+  <main>
+    <section>
+      <div class="seccion-cabecera">
+        <h2>Sinopsis</h2>
+        <span class="seccion-nota">Montana, Estados Unidos</span>
+      </div>
+
+      <div class="sinopsis-grid">
+        <aside class="sinopsis-lateral">
+          <p class="cita-pelicula">«El lenguaje es la primera arma que se desenfunda en un conflicto.»</p>
+          <svg class="glifo-editorial" viewBox="0 0 140 140" fill="none" aria-hidden="true">
+            <path d="M70 18 C102 18, 122 42, 121 72 C120 102, 95 123, 66 121 C38 119, 18 96, 19 67 C20 44, 34 25, 56 20" stroke="#e7e9e8" stroke-width="5.5" stroke-linecap="round"/>
+            <path d="M111 38 C124 30, 130 22, 126 16" stroke="#e7e9e8" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M34 106 C20 116, 18 124, 26 127" stroke="#b78456" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="96" cy="112" r="3" fill="#e7e9e8"/>
+            <circle cx="24" cy="48" r="2.2" fill="#e7e9e8"/>
+          </svg>
+        </aside>
+
+        <div class="sinopsis-cuerpo">
+          <p>Doce naves alargadas aparecen sin aviso en distintos puntos del planeta y quedan suspendidas a pocos metros del suelo. Nadie sabe qué quieren.</p>
+          <p>El ejército de Estados Unidos recluta a la lingüista Louise Banks y al físico Ian Donnelly para entrar en la nave que llegó a Montana. Su misión: descifrar el idioma de los visitantes, unos seres de siete extremidades a los que llaman heptápodos.</p>
+          <p>Mientras otros países se preparan para atacar, Louise descubre que entender ese idioma cambia la forma en que ella misma percibe el tiempo.</p>
+
+          <button id="btnSpoiler">Mostrar final (spoiler)</button>
+          <div id="spoiler" class="spoiler oculto">
+            <p>Las escenas de Louise con su hija Hannah no son recuerdos: son visiones del futuro. El lenguaje heptápodo permite percibir el tiempo de forma no lineal. Louise sabe cómo terminará su vida y aun así decide vivirla.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="seccion-cabecera">
+        <h2>Las doce llegadas</h2>
+        <span class="seccion-nota">Distribución global de las naves</span>
+      </div>
+
+      <div class="mapa-panel">
+        <div class="mapa-cabecera">
+          <h3>Doce puntos en silencio sobre el planeta</h3>
+          <span class="mapa-instruccion">Selecciona cualquier punto en el mapa</span>
+        </div>
+
+        <div class="mapa-svg-wrap">
+          <svg class="mapa-svg" id="mapaSitios" viewBox="0 0 1000 450" fill="none" role="img" aria-label="Mapa con las doce ubicaciones de las naves en Arrival">
+            <!-- Retícula cartográfica sutil -->
+            <g stroke="rgba(231,233,232,0.06)" stroke-width="1">
+              <line x1="0" y1="112" x2="1000" y2="112"/>
+              <line x1="0" y1="225" x2="1000" y2="225"/>
+              <line x1="0" y1="337" x2="1000" y2="337"/>
+              <line x1="200" y1="0" x2="200" y2="450"/>
+              <line x1="400" y1="0" x2="400" y2="450"/>
+              <line x1="600" y1="0" x2="600" y2="450"/>
+              <line x1="800" y1="0" x2="800" y2="450"/>
+            </g>
+
+            <!-- Siluetas minimalistas de continentes -->
+            <g fill="#1b2024" stroke="rgba(231,233,232,0.11)" stroke-width="1">
+              <!-- América del Norte -->
+              <path d="M95,78 L190,62 L270,82 L292,134 L248,182 L212,205 L186,192 L162,155 L118,136 Z"/>
+              <!-- Groenlandia -->
+              <path d="M310,38 L372,34 L394,74 L356,98 L322,82 Z"/>
+              <!-- América del Sur -->
+              <path d="M236,222 L288,225 L334,274 L310,352 L278,408 L254,394 L244,312 L222,262 Z"/>
+              <!-- Europa -->
+              <path d="M446,74 L535,66 L582,92 L566,144 L512,156 L466,146 L444,116 Z"/>
+              <!-- África -->
+              <path d="M454,170 L542,166 L594,218 L576,304 L534,368 L496,356 L478,274 L440,226 Z"/>
+              <!-- Asia -->
+              <path d="M568,72 L746,62 L858,92 L878,154 L816,214 L738,228 L662,216 L598,176 L568,144 Z"/>
+              <!-- Japón -->
+              <path d="M876,132 L894,142 L884,174 L868,168 Z"/>
+              <!-- Oceanía -->
+              <path d="M784,292 L866,286 L898,334 L864,376 L792,366 L768,330 Z"/>
+            </g>
+
+            <!-- Enlace geográfico sutil desde Montana al sitio seleccionado -->
+            <path id="arcoConexion" class="arco-conexion" d="" opacity="0"/>
+
+            <!-- Puntos interactivos añadidos por JS -->
+            <g id="capaPuntos"></g>
+          </svg>
+        </div>
+
+        <div class="mapa-pie">
+          <div>
+            <div class="sitio-titulo" id="sitioTitulo">Montana, Estados Unidos</div>
+            <div class="sitio-detalle" id="sitioDetalle">Campamento principal donde Louise Banks e Ian Donnelly establecen el primer contacto sostenido.</div>
+          </div>
+          <div class="sitio-indice" id="sitioIndice">Nave 1 de 12</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="seccion-cabecera">
+        <h2>Ficha técnica</h2>
+        <span class="seccion-nota">Créditos principales</span>
+      </div>
+      <div class="ficha">
+        <div class="dato"><span>Dirección</span><strong>Denis Villeneuve</strong></div>
+        <div class="dato"><span>Guion</span><strong>Eric Heisserer</strong></div>
+        <div class="dato"><span>Basada en</span><strong>"Story of Your Life" (1998), Ted Chiang</strong></div>
+        <div class="dato"><span>Fotografía</span><strong>Bradford Young</strong></div>
+        <div class="dato"><span>Montaje</span><strong>Joe Walker</strong></div>
+        <div class="dato"><span>Música</span><strong>Jóhann Jóhannsson</strong></div>
+        <div class="dato"><span>Diseño de producción</span><strong>Patrice Vermette</strong></div>
+        <div class="dato"><span>Duración</span><strong>116 minutos</strong></div>
+        <div class="dato"><span>Estreno</span><strong>1 sept. 2016 (Venecia) · 11 nov. 2016 (EE. UU.)</strong></div>
+        <div class="dato"><span>Presupuesto</span><strong>47 millones de dólares</strong></div>
+        <div class="dato"><span>Taquilla mundial</span><strong>203.4 millones de dólares</strong></div>
+        <div class="dato"><span>Distribución</span><strong>Paramount Pictures</strong></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="seccion-cabecera">
+        <h2>Reconocimientos</h2>
+        <span class="seccion-nota">Premios y música</span>
+      </div>
+
+      <div class="reconocimientos-grid">
+        <div>
+          <p>Recibió 8 nominaciones al Óscar, entre ellas Mejor Película y Mejor Director, y ganó el premio a Mejor Edición de Sonido. El American Film Institute la eligió como una de las diez películas del año 2016.</p>
+          <p>La banda sonora mezcla las piezas de Jóhannsson con "On the Nature of Daylight" de Max Richter, que suena al inicio y al final de la película.</p>
+        </div>
+
+        <div class="reconocimientos-cifras">
+          <div class="cifra">
+            <span class="cifra-valor">8</span>
+            <span class="cifra-etiqueta">Nominaciones al Óscar</span>
+          </div>
+          <div class="cifra">
+            <span class="cifra-valor">1</span>
+            <span class="cifra-etiqueta">Óscar en Sonido</span>
+          </div>
+          <div class="banda-sonora">
+            <span>Tema de apertura y cierre</span>
+            <em>On the Nature of Daylight</em>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Sitio de práctica · Sistemas Colaborativos · UTP Veraguas · Contenido con fines educativos
+  </footer>
+</body>
+</html>
