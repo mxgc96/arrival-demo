@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrival (2016) | Personajes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ===== CSS incrustado ===== -->
+  <style>
+    /* Versión 1: solo estructura. Los estilos llegan en la versión 2. */
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }
+    svg, canvas { max-width: 160px; max-height: 160px; }
+  </style>
+</head>
+<body>
+  <div class="grano" aria-hidden="true"></div>
+
+  <header>
+    <nav>
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M32 9 C45 9, 55 19, 55 32 C55 45, 45 55, 32 55 C19 55, 9 45, 9 32 C9 22, 15 13, 24 10" stroke="#e7e9e8" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M49 18 C55 15, 58 11, 55 8" stroke="#b78456" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M16 47 C11 50, 10 55, 14 57" stroke="#e7e9e8" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        ARRIVAL
+      </a>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="personajes.html" class="activo">Personajes</a></li>
+        <li><a href="lenguaje.html">El lenguaje</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="encabezado">
+      <h1>Personajes</h1>
+      <p class="intro">Haz clic en una tarjeta para ver más detalles. Usa los filtros para ver solo un grupo.</p>
+    </div>
+
+    <div class="filtros">
+      <button class="activo" data-filtro="todos">Todos</button>
+      <button data-filtro="ciencia">Equipo científico</button>
+      <button data-filtro="militar">Militares y gobierno</button>
+      <button data-filtro="heptapodo">Heptápodos</button>
+    </div>
+
+    <div class="grid">
+      <!-- Louise Banks -->
+      <article class="tarjeta" data-grupo="ciencia" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <radialGradient id="gLouise" cx="65%" cy="45%" r="65%">
+                <stop offset="0%" stop-color="#374045"/>
+                <stop offset="100%" stop-color="#0f1215"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gLouise)"/>
+            <!-- Círculo de tinta inspirada en la barrera -->
+            <g class="lamina-tinta">
+              <path d="M245 34 C276 34, 296 56, 295 82 C294 110, 270 128, 242 126 C216 124, 198 104, 199 78 C200 56, 214 39, 233 35" stroke="#e9e6de" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.82"/>
+              <path d="M286 52 C300 44, 306 36, 302 30" stroke="#b78456" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M210 112 C196 122, 195 130, 202 134" stroke="#e9e6de" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+            </g>
+            <line x1="0" y1="120" x2="400" y2="120" stroke="rgba(233,230,222,0.12)" stroke-width="1"/>
+          </svg>
+          <span class="grupo-etiqueta">Equipo científico</span>
+          <div class="inicial">L</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Louise Banks</h2>
+          <p class="actor">Amy Adams</p>
+          <p class="rol">Lingüista y profesora universitaria.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Es la protagonista. El ejército la busca porque ya había traducido para ellos antes. Su método es paciente: empieza por palabras simples y se presenta ante los heptápodos sin traje protector para generar confianza.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- Ian Donnelly -->
+      <article class="tarjeta" data-grupo="ciencia" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <radialGradient id="gIan" cx="70%" cy="50%" r="70%">
+                <stop offset="0%" stop-color="#2e3940"/>
+                <stop offset="100%" stop-color="#0f1215"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gIan)"/>
+            <!-- Órbitas y curva óptica (principio de Fermat) -->
+            <circle cx="255" cy="80" r="52" stroke="rgba(233,230,222,0.18)" stroke-width="1" fill="none"/>
+            <circle cx="255" cy="80" r="30" stroke="rgba(233,230,222,0.12)" stroke-width="1" fill="none"/>
+            <path d="M90 128 Q 210 124, 255 80 T 385 30" stroke="#b78456" stroke-width="1.8" fill="none" opacity="0.85"/>
+            <line x1="160" y1="80" x2="350" y2="80" stroke="rgba(233,230,222,0.15)" stroke-width="1" stroke-dasharray="4 5"/>
+            <circle cx="255" cy="80" r="3.5" fill="#e9e6de"/>
+          </svg>
+          <span class="grupo-etiqueta">Equipo científico</span>
+          <div class="inicial">I</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Ian Donnelly</h2>
+          <p class="actor">Jeremy Renner</p>
+          <p class="rol">Físico teórico.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Trabaja junto a Louise. Al principio cree que la ciencia, y no el lenguaje, es la base de toda civilización. Es quien encuentra patrones matemáticos en la escritura heptápoda y quien bautiza a los dos visitantes.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- Coronel Weber -->
+      <article class="tarjeta" data-grupo="militar" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="gWeber" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2c3336"/>
+                <stop offset="100%" stop-color="#0f1215"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gWeber)"/>
+            <!-- Valle de Montana y monolito a lo lejos -->
+            <ellipse cx="268" cy="64" rx="14" ry="38" fill="#0b0d0f" stroke="rgba(233,230,222,0.22)" stroke-width="1"/>
+            <path d="M0 160 L0 112 Q110 88 210 108 T400 96 L400 160 Z" fill="#161b1e"/>
+            <path d="M0 160 L0 132 Q160 118 400 130 L400 160 Z" fill="#0d1012"/>
+            <line x1="215" y1="64" x2="322" y2="64" stroke="rgba(183,132,86,0.35)" stroke-width="1"/>
+          </svg>
+          <span class="grupo-etiqueta">Militares y gobierno</span>
+          <div class="inicial">W</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Coronel Weber</h2>
+          <p class="actor">Forest Whitaker</p>
+          <p class="rol">Coronel del ejército de EE. UU.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Recluta a Louise y dirige el campamento en Montana. Debe equilibrar la paciencia que pide el equipo científico con la presión de sus superiores, que quieren respuestas rápidas.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- Agente Halpern -->
+      <article class="tarjeta" data-grupo="militar" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="160" fill="#101316"/>
+            <!-- Retícula sobria de vigilancia -->
+            <g stroke="rgba(233,230,222,0.09)" stroke-width="1">
+              <line x1="80" y1="0" x2="80" y2="160"/>
+              <line x1="160" y1="0" x2="160" y2="160"/>
+              <line x1="240" y1="0" x2="240" y2="160"/>
+              <line x1="320" y1="0" x2="320" y2="160"/>
+              <line x1="0" y1="40" x2="400" y2="40"/>
+              <line x1="0" y1="80" x2="400" y2="80"/>
+              <line x1="0" y1="120" x2="400" y2="120"/>
+            </g>
+            <rect x="200" y="40" width="80" height="80" fill="rgba(183,132,86,0.10)" stroke="#b78456" stroke-width="1"/>
+            <line x1="240" y1="26" x2="240" y2="134" stroke="rgba(183,132,86,0.5)" stroke-width="1"/>
+          </svg>
+          <span class="grupo-etiqueta">Militares y gobierno</span>
+          <div class="inicial">H</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Agente Halpern</h2>
+          <p class="actor">Michael Stuhlbarg</p>
+          <p class="rol">Agente de la CIA.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Representa la desconfianza del gobierno. Ve a los visitantes como una posible amenaza y vigila de cerca cada avance del equipo.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- General Shang -->
+      <article class="tarjeta" data-grupo="militar" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="gShang" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#292624"/>
+                <stop offset="65%" stop-color="#15181b"/>
+                <stop offset="100%" stop-color="#0d1012"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gShang)"/>
+            <!-- Horizonte marítimo y concha suspendida sobre el mar -->
+            <ellipse cx="264" cy="60" rx="16" ry="42" fill="#090b0c"/>
+            <line x1="0" y1="110" x2="400" y2="110" stroke="rgba(233,230,222,0.22)" stroke-width="1"/>
+            <line x1="224" y1="120" x2="304" y2="120" stroke="rgba(183,132,86,0.4)" stroke-width="1.5"/>
+            <line x1="238" y1="129" x2="290" y2="129" stroke="rgba(233,230,222,0.16)" stroke-width="1"/>
+          </svg>
+          <span class="grupo-etiqueta">Militares y gobierno</span>
+          <div class="inicial">S</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>General Shang</h2>
+          <p class="actor">Tzi Ma</p>
+          <p class="rol">Jefe militar de China.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Lidera la respuesta de China ante la nave en su territorio. Sus decisiones pueden llevar al mundo a un enfrentamiento, y tiene un papel clave en el desenlace.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- Abbott y Costello -->
+      <article class="tarjeta" data-grupo="heptapodo" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <radialGradient id="gBarrera" cx="55%" cy="50%" r="65%">
+                <stop offset="0%" stop-color="#dbd8cf"/>
+                <stop offset="60%" stop-color="#8b9190"/>
+                <stop offset="100%" stop-color="#1c2023"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gBarrera)"/>
+            <!-- Siluetas difusas tras la barrera de niebla -->
+            <g class="lamina-silueta">
+              <path d="M185 160 C186 112, 198 70, 212 46 C224 72, 232 114, 236 160 Z" fill="#171b1e" opacity="0.52"/>
+              <path d="M268 160 C272 118, 282 78, 294 56 C306 82, 314 122, 316 160 Z" fill="#171b1e" opacity="0.40"/>
+            </g>
+            <!-- Nube de tinta -->
+            <circle class="lamina-tinta" cx="250" cy="78" r="24" stroke="#14171a" stroke-width="4" fill="none" stroke-dasharray="36 7 24 6" opacity="0.82"/>
+          </svg>
+          <span class="grupo-etiqueta">Heptápodos</span>
+          <div class="inicial">A</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Abbott y Costello</h2>
+          <p class="actor">Creados con efectos visuales</p>
+          <p class="rol">Los dos heptápodos de la nave de Montana.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Ian les pone esos apodos en honor a un famoso dúo cómico estadounidense. Tienen siete extremidades y se comunican por sonidos y por círculos de tinta que expulsan en el aire.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    Sitio de práctica · Sistemas Colaborativos · UTP Veraguas · Contenido con fines educativos
+  </footer>
+</body>
+</html>
