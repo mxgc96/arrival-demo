@@ -359,6 +359,81 @@
       .filtros { gap: 16px; }
       .grid { grid-template-columns: 1fr; }
     }
+
+    /* =====================================================
+       EFECTOS DE ATMÓSFERA (iguales en las 3 páginas)
+       ===================================================== */
+
+    /* Niebla viva: canvas fijo que flota sobre todo el sitio */
+    .niebla-viva {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+      mix-blend-mode: screen;
+      opacity: 0.52;
+    }
+
+    /* Velo de niebla para entrar y salir de cada página */
+    .velo {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 45% at 50% 50%, #3a4549 0%, #1b2124 55%, #0c0e10 100%);
+      opacity: 1;
+      transition: opacity 1.1s ease;
+    }
+    .velo.abierto { opacity: 0; }
+    .velo.cerrando { opacity: 1; transition: opacity 0.55s ease; }
+
+    /* Anillo de humo que aparece al hacer clic */
+    .anillo-humo {
+      position: fixed;
+      width: 180px;
+      height: 180px;
+      margin: -90px 0 0 -90px;
+      pointer-events: none;
+      z-index: 45;
+      animation: anilloExpande 1.8s cubic-bezier(.2, .7, .2, 1) forwards;
+    }
+    @keyframes anilloExpande {
+      0%   { transform: scale(0.25) rotate(0deg); opacity: 0.95; filter: blur(0); }
+      60%  { opacity: 0.6; }
+      100% { transform: scale(1.35) rotate(40deg); opacity: 0; filter: blur(6px); }
+    }
+
+    /* Las secciones emergen de la niebla al hacer scroll */
+    .js-on main > * {
+      transition: opacity 1.2s ease, filter 1.2s ease, transform 1.2s ease;
+    }
+    .js-on main > .oculto-niebla {
+      opacity: 0;
+      filter: blur(12px);
+      transform: translateY(28px);
+    }
+
+    /* Título que se condensa letra por letra (solo donde exista) */
+    .letra-niebla {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(16px);
+      transform: translateY(10px) scale(1.15);
+      animation: condensar 1.6s ease forwards;
+    }
+    @keyframes condensar {
+      to { opacity: 1; filter: blur(0); transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .niebla-viva, .anillo-humo { display: none; }
+      .letra-niebla { animation: none; opacity: 1; filter: none; transform: none; }
+      .js-on main > .oculto-niebla { opacity: 1; filter: none; transform: none; }
+      .lamina-tinta, .lamina-silueta, .tarjeta.entra-filtro { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -656,6 +731,211 @@
         });
       });
     });
+  </script>
+
+  <!-- ===== Efectos de atmósfera (iguales en las 3 páginas) ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="humo">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7" result="ruido"/>
+      <feDisplacementMap in="SourceGraphic" in2="ruido" scale="22"/>
+      <feGaussianBlur stdDeviation="1.4"/>
+    </filter>
+  </svg>
+  <div class="velo" id="velo" aria-hidden="true"></div>
+
+  <script>
+    (function () {
+      document.documentElement.classList.add("js-on");
+      const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---------- 1. Velo de niebla al entrar y salir ---------- */
+      const velo = document.getElementById("velo");
+      requestAnimationFrame(function () { velo.classList.add("abierto"); });
+      window.addEventListener("pageshow", function () {
+        velo.classList.remove("cerrando");
+        velo.classList.add("abierto");
+      });
+      document.querySelectorAll('a[href$=".html"]').forEach(function (enlace) {
+        enlace.addEventListener("click", function (e) {
+          if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0 || sinMovimiento) return;
+          if (enlace.classList.contains("activo")) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+          }
+          e.preventDefault();
+          velo.classList.remove("abierto");
+          velo.classList.add("cerrando");
+          setTimeout(function () { window.location.href = enlace.href; }, 550);
+        });
+      });
+
+      /* ---------- 2. Secciones que emergen de la niebla ---------- */
+      const bloques = document.querySelectorAll("main > *");
+      if ("IntersectionObserver" in window && !sinMovimiento) {
+        const observador = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (entrada.isIntersecting) {
+              entrada.target.classList.remove("oculto-niebla");
+              observador.unobserve(entrada.target);
+            }
+          });
+        }, { threshold: 0.04, rootMargin: "0px 0px -30px 0px" });
+        bloques.forEach(function (b) {
+          if (b.getBoundingClientRect().top > window.innerHeight * 0.9) {
+            b.classList.add("oculto-niebla");
+            observador.observe(b);
+          }
+        });
+      }
+
+      /* ---------- 3. Título que se condensa letra por letra ---------- */
+      const titulo = document.querySelector("h1");
+      if (titulo && !sinMovimiento) {
+        const texto = titulo.textContent;
+        titulo.setAttribute("aria-label", texto);
+        titulo.textContent = "";
+        let i = 0;
+        texto.split(" ").forEach(function (palabra, p) {
+          if (p > 0) titulo.appendChild(document.createTextNode(" "));
+          const caja = document.createElement("span");
+          caja.style.whiteSpace = "nowrap";   // las palabras no se cortan
+          caja.setAttribute("aria-hidden", "true");
+          Array.from(palabra).forEach(function (letra) {
+            const s = document.createElement("span");
+            s.className = "letra-niebla";
+            s.textContent = letra;
+            s.style.animationDelay = (0.55 + i * 0.09) + "s";
+            caja.appendChild(s);
+            i++;
+          });
+          titulo.appendChild(caja);
+        });
+      }
+
+      if (sinMovimiento) return;
+
+      /* ---------- 4. Anillo de humo al hacer clic ---------- */
+      const svgNS = "http://www.w3.org/2000/svg";
+      const anillosActivos = [];
+      document.addEventListener("click", function (e) {
+        if (e.detail === 0) return;
+        if (e.target.closest("button, a, input, label, canvas, .tarjeta")) return;
+
+        if (anillosActivos.length >= 3) {
+          const viejo = anillosActivos.shift();
+          if (viejo) viejo.remove();
+        }
+
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("viewBox", "0 0 200 200");
+        svg.setAttribute("class", "anillo-humo");
+        svg.style.left = e.clientX + "px";
+        svg.style.top = e.clientY + "px";
+        const c = document.createElementNS(svgNS, "circle");
+        c.setAttribute("cx", "100");
+        c.setAttribute("cy", "100");
+        c.setAttribute("r", "62");
+        c.setAttribute("fill", "none");
+        c.setAttribute("stroke", "rgba(228, 232, 228, 0.85)");
+        c.setAttribute("stroke-width", (6 + Math.random() * 6).toFixed(1));
+        // huecos al azar para que parezca un trazo de tinta
+        c.setAttribute("stroke-dasharray", (120 + Math.random() * 160) + " " + (8 + Math.random() * 30));
+        c.setAttribute("transform", "rotate(" + Math.floor(Math.random() * 360) + " 100 100)");
+        c.setAttribute("filter", "url(#humo)");
+        svg.appendChild(c);
+        document.body.appendChild(svg);
+        anillosActivos.push(svg);
+        setTimeout(function () {
+          svg.remove();
+          const idx = anillosActivos.indexOf(svg);
+          if (idx !== -1) anillosActivos.splice(idx, 1);
+        }, 1900);
+      });
+
+      /* ---------- 5. Niebla viva en canvas ---------- */
+      const lienzoNiebla = document.createElement("canvas");
+      lienzoNiebla.className = "niebla-viva";
+      lienzoNiebla.setAttribute("aria-hidden", "true");
+      document.body.appendChild(lienzoNiebla);
+      const cn = lienzoNiebla.getContext("2d");
+
+      // Una "bocanada" de niebla dibujada una sola vez y reutilizada
+      const bocanada = document.createElement("canvas");
+      bocanada.width = bocanada.height = 256;
+      const cb = bocanada.getContext("2d");
+      const grad = cb.createRadialGradient(128, 128, 0, 128, 128, 128);
+      grad.addColorStop(0, "rgba(214, 222, 224, 0.30)");
+      grad.addColorStop(0.45, "rgba(190, 202, 206, 0.12)");
+      grad.addColorStop(1, "rgba(190, 202, 206, 0)");
+      cb.fillStyle = grad;
+      cb.fillRect(0, 0, 256, 256);
+
+      let ancho, alto, nubes = [], rafId = null;
+      const raton = { x: -9999, y: -9999 };
+
+      function crearNubes() {
+        nubes = [];
+        const cantidad = Math.round(ancho / 70) + 10;
+        for (let i = 0; i < cantidad; i++) {
+          const abajo = Math.random() < 0.65; // más niebla a ras del suelo
+          nubes.push({
+            x: Math.random() * ancho,
+            y: abajo ? alto * (0.6 + Math.random() * 0.5) : Math.random() * alto,
+            r: 160 + Math.random() * 300,
+            vx: (0.06 + Math.random() * 0.22) * (Math.random() < 0.5 ? -1 : 1),
+            alfa: 0.35 + Math.random() * 0.55,
+            fase: Math.random() * 1000,
+            ox: 0, oy: 0
+          });
+        }
+      }
+
+      function ajustar() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        ancho = window.innerWidth;
+        alto = window.innerHeight;
+        lienzoNiebla.width = ancho * dpr;
+        lienzoNiebla.height = alto * dpr;
+        cn.setTransform(dpr, 0, 0, dpr, 0, 0);
+        crearNubes();
+      }
+
+      window.addEventListener("resize", ajustar);
+      window.addEventListener("mousemove", function (e) { raton.x = e.clientX; raton.y = e.clientY; });
+      document.addEventListener("mouseleave", function () { raton.x = -9999; raton.y = -9999; });
+      ajustar();
+
+      function animar(t) {
+        if (document.hidden) { rafId = null; return; }
+        cn.clearRect(0, 0, ancho, alto);
+        nubes.forEach(function (n) {
+          n.x += n.vx;
+          if (n.x - n.r > ancho) n.x = -n.r;
+          if (n.x + n.r < 0) n.x = ancho + n.r;
+          const y = n.y + Math.sin(t * 0.00025 + n.fase) * 18;
+
+          // la niebla se aparta suavemente del cursor
+          const dx = n.x - raton.x, dy = y - raton.y;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const empuje = Math.max(0, 1 - dist / 260) * 60;
+          n.ox += ((dx / dist) * empuje - n.ox) * 0.04;
+          n.oy += ((dy / dist) * empuje - n.oy) * 0.04;
+
+          cn.globalAlpha = n.alfa;
+          cn.drawImage(bocanada, n.x + n.ox - n.r, y + n.oy - n.r * 0.55, n.r * 2, n.r * 1.1);
+        });
+        cn.globalAlpha = 1;
+        rafId = requestAnimationFrame(animar);
+      }
+
+      document.addEventListener("visibilitychange", function () {
+        if (!document.hidden && !rafId) {
+          rafId = requestAnimationFrame(animar);
+        }
+      });
+      rafId = requestAnimationFrame(animar);
+    })();
   </script>
 </body>
 </html>
