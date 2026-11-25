@@ -607,5 +607,55 @@
   <footer>
     Sitio de práctica · Sistemas Colaborativos · UTP Veraguas · Contenido con fines educativos
   </footer>
+
+  <!-- ===== JavaScript incrustado ===== -->
+  <script>
+    // 1. Abrir o cerrar el detalle de cada tarjeta al hacer clic o con teclado
+    const tarjetas = document.querySelectorAll(".tarjeta");
+
+    function alternarTarjeta(tarjeta) {
+      const abierta = tarjeta.classList.toggle("abierta");
+      tarjeta.setAttribute("aria-expanded", abierta ? "true" : "false");
+      tarjeta.querySelector(".pista-texto").textContent = abierta ? "Clic para cerrar" : "Clic para ver más";
+      tarjeta.querySelector(".pista-signo").textContent = abierta ? "−" : "+";
+    }
+
+    tarjetas.forEach(function (tarjeta) {
+      tarjeta.addEventListener("click", function () {
+        alternarTarjeta(tarjeta);
+      });
+
+      tarjeta.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          alternarTarjeta(tarjeta);
+        }
+      });
+    });
+
+    // 2. Filtrar tarjetas según el grupo elegido
+    const botones = document.querySelectorAll(".filtros button");
+
+    botones.forEach(function (boton) {
+      boton.addEventListener("click", function () {
+        botones.forEach(function (b) { b.classList.remove("activo"); });
+        boton.classList.add("activo");
+
+        const filtro = boton.dataset.filtro;
+        let visibles = 0;
+        tarjetas.forEach(function (tarjeta) {
+          const coincide = filtro === "todos" || tarjeta.dataset.grupo === filtro;
+          tarjeta.classList.toggle("oculta-filtro", !coincide);
+          tarjeta.classList.remove("entra-filtro");
+          if (coincide) {
+            void tarjeta.offsetWidth;
+            tarjeta.style.animationDelay = (visibles * 0.05) + "s";
+            tarjeta.classList.add("entra-filtro");
+            visibles++;
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
