@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrival (2016) | Personajes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ===== CSS incrustado ===== -->
+  <style>
+    :root {
+      --fondo: #0c0e10;
+      --superficie: #131619;
+      --superficie-clara: #191d21;
+      --papel: #e9e6de;
+      --niebla: #a9b1b5;
+      --texto: #e7e9e8;
+      --texto-tenue: #767f84;
+      --acento: #b78456;
+      --linea: rgba(231, 233, 232, 0.12);
+      --linea-fuerte: rgba(231, 233, 232, 0.30);
+      --fuente-titulo: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --fuente-texto: "Plus Jakarta Sans", "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--fondo);
+      color: var(--texto);
+      font-family: var(--fuente-texto);
+      font-weight: 300;
+      line-height: 1.72;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .grano {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 90;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    }
+
+    /* ===== Navegación compartida ===== */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(12, 14, 16, 0.86);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--linea);
+      z-index: 50;
+    }
+
+    nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 28px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--fuente-titulo);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 8px;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo svg { width: 22px; height: 22px; opacity: 0.85; }
+
+    nav ul { list-style: none; display: flex; gap: 32px; }
+
+    nav ul a {
+      color: var(--niebla);
+      text-decoration: none;
+      font-size: 0.84rem;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      padding-bottom: 4px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    nav ul a:hover,
+    nav ul a.activo {
+      color: var(--texto);
+      border-bottom-color: var(--acento);
+    }
+
+    /* ===== Contenido ===== */
+    main {
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 68px 28px 88px;
+      flex: 1;
+    }
+
+    .encabezado {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--linea);
+    }
+
+    h1 {
+      font-family: var(--fuente-titulo);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      letter-spacing: 3px;
+      line-height: 1.08;
+      color: #f3f4f1;
+    }
+
+    .intro {
+      color: var(--niebla);
+      max-width: 480px;
+      font-size: 0.96rem;
+    }
+
+    /* Filtros sobrios en pestañas */
+    .filtros {
+      display: flex;
+      gap: 26px;
+      flex-wrap: wrap;
+      margin-bottom: 38px;
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .filtros button {
+      background: transparent;
+      color: var(--texto-tenue);
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 10px 2px 13px;
+      margin-bottom: -1px;
+      cursor: pointer;
+      font-family: var(--fuente-texto);
+      font-size: 0.82rem;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .filtros button:hover {
+      color: var(--texto);
+    }
+
+    .filtros button.activo {
+      color: var(--papel);
+      border-bottom-color: var(--acento);
+    }
+
+    /* ===== Galería de personajes ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .tarjeta {
+      background: var(--superficie);
+      border: 1px solid var(--linea);
+      cursor: pointer;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .tarjeta:hover,
+    .tarjeta.abierta {
+      border-color: var(--linea-fuerte);
+      background: var(--superficie-clara);
+    }
+
+    /* Lámina visual atmosférica propia de cada personaje */
+    .lamina {
+      position: relative;
+      height: 152px;
+      background: #0f1215;
+      border-bottom: 1px solid var(--linea);
+      overflow: hidden;
+    }
+
+    .lamina svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .tarjeta:hover .lamina svg {
+      transform: scale(1.03);
+    }
+
+    .inicial {
+      position: absolute;
+      left: 20px;
+      bottom: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(12, 14, 16, 0.85);
+      border: 1px solid var(--linea-fuerte);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fuente-titulo);
+      font-size: 1.25rem;
+      color: var(--papel);
+    }
+
+    .grupo-etiqueta {
+      position: absolute;
+      right: 16px;
+      top: 14px;
+      font-size: 0.68rem;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--niebla);
+      background: rgba(12, 14, 16, 0.72);
+      padding: 4px 9px;
+      border: 1px solid var(--linea);
+    }
+
+    .tarjeta-cuerpo {
+      padding: 22px 24px 20px;
+    }
+
+    .tarjeta h2 {
+      font-family: var(--fuente-titulo);
+      font-weight: 400;
+      font-size: 1.65rem;
+      letter-spacing: 0.5px;
+      line-height: 1.15;
+      color: #f3f4f1;
+    }
+
+    .actor {
+      color: var(--acento);
+      font-size: 0.84rem;
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+    }
+
+    .rol {
+      color: var(--niebla);
+      font-size: 0.94rem;
+      margin-top: 10px;
+    }
+
+    /* Desplegable suave del detalle */
+    .detalle-envoltura {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s ease, margin-top 0.32s ease;
+      margin-top: 0;
+    }
+
+    .tarjeta.abierta .detalle-envoltura {
+      grid-template-rows: 1fr;
+      margin-top: 14px;
+    }
+
+    .detalle {
+      overflow: hidden;
+    }
+
+    .detalle-interno {
+      padding-top: 14px;
+      border-top: 1px solid var(--linea);
+      font-size: 0.93rem;
+      color: #d6dada;
+    }
+
+    .pista {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--texto-tenue);
+      font-size: 0.75rem;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(231, 233, 232, 0.07);
+      transition: color 0.25s ease;
+    }
+
+    .tarjeta:hover .pista,
+    .tarjeta.abierta .pista {
+      color: var(--papel);
+    }
+
+    .tarjeta.oculta-filtro { display: none; }
+
+    .tarjeta.entra-filtro {
+      animation: entrarTarjeta 0.45s ease both;
+    }
+
+    @keyframes entrarTarjeta {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Animaciones muy sutiles dentro de las láminas */
+    .lamina-tinta {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: giroSutil 42s linear infinite;
+    }
+
+    .lamina-silueta {
+      animation: derivaSilueta 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes giroSutil {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes derivaSilueta {
+      from { transform: translateX(-3px); }
+      to { transform: translateX(3px); }
+    }
+
+    footer {
+      text-align: center;
+      color: var(--texto-tenue);
+      font-size: 0.8rem;
+      letter-spacing: 0.8px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--linea);
+    }
+
+    @media (max-width: 620px) {
+      nav { padding: 16px 18px; }
+      .logo { letter-spacing: 3px; font-size: 1.05rem; gap: 8px; }
+      nav ul { gap: 12px; }
+      nav ul a { font-size: 0.7rem; letter-spacing: 0.8px; }
+      .filtros { gap: 16px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* =====================================================
+       EFECTOS DE ATMÓSFERA (iguales en las 3 páginas)
+       ===================================================== */
+
+    /* Niebla viva: canvas fijo que flota sobre todo el sitio */
+    .niebla-viva {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+      mix-blend-mode: screen;
+      opacity: 0.52;
+    }
+
+    /* Velo de niebla para entrar y salir de cada página */
+    .velo {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 45% at 50% 50%, #3a4549 0%, #1b2124 55%, #0c0e10 100%);
+      opacity: 1;
+      transition: opacity 1.1s ease;
+    }
+    .velo.abierto { opacity: 0; }
+    .velo.cerrando { opacity: 1; transition: opacity 0.55s ease; }
+
+    /* Anillo de humo que aparece al hacer clic */
+    .anillo-humo {
+      position: fixed;
+      width: 180px;
+      height: 180px;
+      margin: -90px 0 0 -90px;
+      pointer-events: none;
+      z-index: 45;
+      animation: anilloExpande 1.8s cubic-bezier(.2, .7, .2, 1) forwards;
+    }
+    @keyframes anilloExpande {
+      0%   { transform: scale(0.25) rotate(0deg); opacity: 0.95; filter: blur(0); }
+      60%  { opacity: 0.6; }
+      100% { transform: scale(1.35) rotate(40deg); opacity: 0; filter: blur(6px); }
+    }
+
+    /* Las secciones emergen de la niebla al hacer scroll */
+    .js-on main > * {
+      transition: opacity 1.2s ease, filter 1.2s ease, transform 1.2s ease;
+    }
+    .js-on main > .oculto-niebla {
+      opacity: 0;
+      filter: blur(12px);
+      transform: translateY(28px);
+    }
+
+    /* Título que se condensa letra por letra (solo donde exista) */
+    .letra-niebla {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(16px);
+      transform: translateY(10px) scale(1.15);
+      animation: condensar 1.6s ease forwards;
+    }
+    @keyframes condensar {
+      to { opacity: 1; filter: blur(0); transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .niebla-viva, .anillo-humo { display: none; }
+      .letra-niebla { animation: none; opacity: 1; filter: none; transform: none; }
+      .js-on main > .oculto-niebla { opacity: 1; filter: none; transform: none; }
+      .lamina-tinta, .lamina-silueta, .tarjeta.entra-filtro { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grano" aria-hidden="true"></div>
+
+  <header>
+    <nav>
+      <a class="logo" href="index.html">
+        <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M32 9 C45 9, 55 19, 55 32 C55 45, 45 55, 32 55 C19 55, 9 45, 9 32 C9 22, 15 13, 24 10" stroke="#e7e9e8" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M49 18 C55 15, 58 11, 55 8" stroke="#b78456" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M16 47 C11 50, 10 55, 14 57" stroke="#e7e9e8" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        ARRIVAL
+      </a>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="personajes.html" class="activo">Personajes</a></li>
+        <li><a href="lenguaje.html">El lenguaje</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="encabezado">
+      <h1>Personajes</h1>
+      <p class="intro">Haz clic en una tarjeta para ver más detalles. Usa los filtros para ver solo un grupo.</p>
+    </div>
+
+    <div class="filtros">
+      <button class="activo" data-filtro="todos">Todos</button>
+      <button data-filtro="ciencia">Equipo científico</button>
+      <button data-filtro="militar">Militares y gobierno</button>
+      <button data-filtro="heptapodo">Heptápodos</button>
+    </div>
+
+    <div class="grid">
+      <!-- Louise Banks -->
+      <article class="tarjeta" data-grupo="ciencia" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <radialGradient id="gLouise" cx="65%" cy="45%" r="65%">
+                <stop offset="0%" stop-color="#374045"/>
+                <stop offset="100%" stop-color="#0f1215"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gLouise)"/>
+            <!-- Círculo de tinta inspirada en la barrera -->
+            <g class="lamina-tinta">
+              <path d="M245 34 C276 34, 296 56, 295 82 C294 110, 270 128, 242 126 C216 124, 198 104, 199 78 C200 56, 214 39, 233 35" stroke="#e9e6de" stroke-width="4.5" fill="none" stroke-linecap="round" opacity="0.82"/>
+              <path d="M286 52 C300 44, 306 36, 302 30" stroke="#b78456" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M210 112 C196 122, 195 130, 202 134" stroke="#e9e6de" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+            </g>
+            <line x1="0" y1="120" x2="400" y2="120" stroke="rgba(233,230,222,0.12)" stroke-width="1"/>
+          </svg>
+          <span class="grupo-etiqueta">Equipo científico</span>
+          <div class="inicial">L</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Louise Banks</h2>
+          <p class="actor">Amy Adams</p>
+          <p class="rol">Lingüista y profesora universitaria.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Es la protagonista. El ejército la busca porque ya había traducido para ellos antes. Su método es paciente: empieza por palabras simples y se presenta ante los heptápodos sin traje protector para generar confianza.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- Ian Donnelly -->
+      <article class="tarjeta" data-grupo="ciencia" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <radialGradient id="gIan" cx="70%" cy="50%" r="70%">
+                <stop offset="0%" stop-color="#2e3940"/>
+                <stop offset="100%" stop-color="#0f1215"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gIan)"/>
+            <!-- Órbitas y curva óptica (principio de Fermat) -->
+            <circle cx="255" cy="80" r="52" stroke="rgba(233,230,222,0.18)" stroke-width="1" fill="none"/>
+            <circle cx="255" cy="80" r="30" stroke="rgba(233,230,222,0.12)" stroke-width="1" fill="none"/>
+            <path d="M90 128 Q 210 124, 255 80 T 385 30" stroke="#b78456" stroke-width="1.8" fill="none" opacity="0.85"/>
+            <line x1="160" y1="80" x2="350" y2="80" stroke="rgba(233,230,222,0.15)" stroke-width="1" stroke-dasharray="4 5"/>
+            <circle cx="255" cy="80" r="3.5" fill="#e9e6de"/>
+          </svg>
+          <span class="grupo-etiqueta">Equipo científico</span>
+          <div class="inicial">I</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Ian Donnelly</h2>
+          <p class="actor">Jeremy Renner</p>
+          <p class="rol">Físico teórico.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Trabaja junto a Louise. Al principio cree que la ciencia, y no el lenguaje, es la base de toda civilización. Es quien encuentra patrones matemáticos en la escritura heptápoda y quien bautiza a los dos visitantes.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- Coronel Weber -->
+      <article class="tarjeta" data-grupo="militar" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="gWeber" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2c3336"/>
+                <stop offset="100%" stop-color="#0f1215"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gWeber)"/>
+            <!-- Valle de Montana y monolito a lo lejos -->
+            <ellipse cx="268" cy="64" rx="14" ry="38" fill="#0b0d0f" stroke="rgba(233,230,222,0.22)" stroke-width="1"/>
+            <path d="M0 160 L0 112 Q110 88 210 108 T400 96 L400 160 Z" fill="#161b1e"/>
+            <path d="M0 160 L0 132 Q160 118 400 130 L400 160 Z" fill="#0d1012"/>
+            <line x1="215" y1="64" x2="322" y2="64" stroke="rgba(183,132,86,0.35)" stroke-width="1"/>
+          </svg>
+          <span class="grupo-etiqueta">Militares y gobierno</span>
+          <div class="inicial">W</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Coronel Weber</h2>
+          <p class="actor">Forest Whitaker</p>
+          <p class="rol">Coronel del ejército de EE. UU.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Recluta a Louise y dirige el campamento en Montana. Debe equilibrar la paciencia que pide el equipo científico con la presión de sus superiores, que quieren respuestas rápidas.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- Agente Halpern -->
+      <article class="tarjeta" data-grupo="militar" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="400" height="160" fill="#101316"/>
+            <!-- Retícula sobria de vigilancia -->
+            <g stroke="rgba(233,230,222,0.09)" stroke-width="1">
+              <line x1="80" y1="0" x2="80" y2="160"/>
+              <line x1="160" y1="0" x2="160" y2="160"/>
+              <line x1="240" y1="0" x2="240" y2="160"/>
+              <line x1="320" y1="0" x2="320" y2="160"/>
+              <line x1="0" y1="40" x2="400" y2="40"/>
+              <line x1="0" y1="80" x2="400" y2="80"/>
+              <line x1="0" y1="120" x2="400" y2="120"/>
+            </g>
+            <rect x="200" y="40" width="80" height="80" fill="rgba(183,132,86,0.10)" stroke="#b78456" stroke-width="1"/>
+            <line x1="240" y1="26" x2="240" y2="134" stroke="rgba(183,132,86,0.5)" stroke-width="1"/>
+          </svg>
+          <span class="grupo-etiqueta">Militares y gobierno</span>
+          <div class="inicial">H</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Agente Halpern</h2>
+          <p class="actor">Michael Stuhlbarg</p>
+          <p class="rol">Agente de la CIA.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Representa la desconfianza del gobierno. Ve a los visitantes como una posible amenaza y vigila de cerca cada avance del equipo.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- General Shang -->
+      <article class="tarjeta" data-grupo="militar" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <linearGradient id="gShang" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#292624"/>
+                <stop offset="65%" stop-color="#15181b"/>
+                <stop offset="100%" stop-color="#0d1012"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gShang)"/>
+            <!-- Horizonte marítimo y concha suspendida sobre el mar -->
+            <ellipse cx="264" cy="60" rx="16" ry="42" fill="#090b0c"/>
+            <line x1="0" y1="110" x2="400" y2="110" stroke="rgba(233,230,222,0.22)" stroke-width="1"/>
+            <line x1="224" y1="120" x2="304" y2="120" stroke="rgba(183,132,86,0.4)" stroke-width="1.5"/>
+            <line x1="238" y1="129" x2="290" y2="129" stroke="rgba(233,230,222,0.16)" stroke-width="1"/>
+          </svg>
+          <span class="grupo-etiqueta">Militares y gobierno</span>
+          <div class="inicial">S</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>General Shang</h2>
+          <p class="actor">Tzi Ma</p>
+          <p class="rol">Jefe militar de China.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Lidera la respuesta de China ante la nave en su territorio. Sus decisiones pueden llevar al mundo a un enfrentamiento, y tiene un papel clave en el desenlace.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+
+      <!-- Abbott y Costello -->
+      <article class="tarjeta" data-grupo="heptapodo" tabindex="0" role="button" aria-expanded="false">
+        <div class="lamina">
+          <svg viewBox="0 0 400 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs>
+              <radialGradient id="gBarrera" cx="55%" cy="50%" r="65%">
+                <stop offset="0%" stop-color="#dbd8cf"/>
+                <stop offset="60%" stop-color="#8b9190"/>
+                <stop offset="100%" stop-color="#1c2023"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="160" fill="url(#gBarrera)"/>
+            <!-- Siluetas difusas tras la barrera de niebla -->
+            <g class="lamina-silueta">
+              <path d="M185 160 C186 112, 198 70, 212 46 C224 72, 232 114, 236 160 Z" fill="#171b1e" opacity="0.52"/>
+              <path d="M268 160 C272 118, 282 78, 294 56 C306 82, 314 122, 316 160 Z" fill="#171b1e" opacity="0.40"/>
+            </g>
+            <!-- Nube de tinta -->
+            <circle class="lamina-tinta" cx="250" cy="78" r="24" stroke="#14171a" stroke-width="4" fill="none" stroke-dasharray="36 7 24 6" opacity="0.82"/>
+          </svg>
+          <span class="grupo-etiqueta">Heptápodos</span>
+          <div class="inicial">A</div>
+        </div>
+        <div class="tarjeta-cuerpo">
+          <h2>Abbott y Costello</h2>
+          <p class="actor">Creados con efectos visuales</p>
+          <p class="rol">Los dos heptápodos de la nave de Montana.</p>
+          <div class="detalle-envoltura">
+            <div class="detalle">
+              <div class="detalle-interno">Ian les pone esos apodos en honor a un famoso dúo cómico estadounidense. Tienen siete extremidades y se comunican por sonidos y por círculos de tinta que expulsan en el aire.</div>
+            </div>
+          </div>
+          <p class="pista"><span class="pista-texto">Clic para ver más</span><span class="pista-signo">+</span></p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    Sitio de práctica · Sistemas Colaborativos · UTP Veraguas · Contenido con fines educativos
+  </footer>
+
+  <!-- ===== JavaScript incrustado ===== -->
+  <script>
+    // 1. Abrir o cerrar el detalle de cada tarjeta al hacer clic o con teclado
+    const tarjetas = document.querySelectorAll(".tarjeta");
+
+    function alternarTarjeta(tarjeta) {
+      const abierta = tarjeta.classList.toggle("abierta");
+      tarjeta.setAttribute("aria-expanded", abierta ? "true" : "false");
+      tarjeta.querySelector(".pista-texto").textContent = abierta ? "Clic para cerrar" : "Clic para ver más";
+      tarjeta.querySelector(".pista-signo").textContent = abierta ? "−" : "+";
+    }
+
+    tarjetas.forEach(function (tarjeta) {
+      tarjeta.addEventListener("click", function () {
+        alternarTarjeta(tarjeta);
+      });
+
+      tarjeta.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          alternarTarjeta(tarjeta);
+        }
+      });
+    });
+
+    // 2. Filtrar tarjetas según el grupo elegido
+    const botones = document.querySelectorAll(".filtros button");
+
+    botones.forEach(function (boton) {
+      boton.addEventListener("click", function () {
+        botones.forEach(function (b) { b.classList.remove("activo"); });
+        boton.classList.add("activo");
+
+        const filtro = boton.dataset.filtro;
+        let visibles = 0;
+        tarjetas.forEach(function (tarjeta) {
+          const coincide = filtro === "todos" || tarjeta.dataset.grupo === filtro;
+          tarjeta.classList.toggle("oculta-filtro", !coincide);
+          tarjeta.classList.remove("entra-filtro");
+          if (coincide) {
+            void tarjeta.offsetWidth;
+            tarjeta.style.animationDelay = (visibles * 0.05) + "s";
+            tarjeta.classList.add("entra-filtro");
+            visibles++;
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- ===== Efectos de atmósfera (iguales en las 3 páginas) ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="humo">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7" result="ruido"/>
+      <feDisplacementMap in="SourceGraphic" in2="ruido" scale="22"/>
+      <feGaussianBlur stdDeviation="1.4"/>
+    </filter>
+  </svg>
+  <div class="velo" id="velo" aria-hidden="true"></div>
+
+  <script>
+    (function () {
+      document.documentElement.classList.add("js-on");
+      const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* ---------- 1. Velo de niebla al entrar y salir ---------- */
+      const velo = document.getElementById("velo");
+      requestAnimationFrame(function () { velo.classList.add("abierto"); });
+      window.addEventListener("pageshow", function () {
+        velo.classList.remove("cerrando");
+        velo.classList.add("abierto");
+      });
+      document.querySelectorAll('a[href$=".html"]').forEach(function (enlace) {
+        enlace.addEventListener("click", function (e) {
+          if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0 || sinMovimiento) return;
+          if (enlace.classList.contains("activo")) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+          }
+          e.preventDefault();
+          velo.classList.remove("abierto");
+          velo.classList.add("cerrando");
+          setTimeout(function () { window.location.href = enlace.href; }, 550);
+        });
+      });
+
+      /* ---------- 2. Secciones que emergen de la niebla ---------- */
+      const bloques = document.querySelectorAll("main > *");
+      if ("IntersectionObserver" in window && !sinMovimiento) {
+        const observador = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) {
+            if (entrada.isIntersecting) {
+              entrada.target.classList.remove("oculto-niebla");
+              observador.unobserve(entrada.target);
+            }
+          });
+        }, { threshold: 0.04, rootMargin: "0px 0px -30px 0px" });
+        bloques.forEach(function (b) {
+          if (b.getBoundingClientRect().top > window.innerHeight * 0.9) {
+            b.classList.add("oculto-niebla");
+            observador.observe(b);
+          }
+        });
+      }
+
+      /* ---------- 3. Título que se condensa letra por letra ---------- */
+      const titulo = document.querySelector("h1");
+      if (titulo && !sinMovimiento) {
+        const texto = titulo.textContent;
+        titulo.setAttribute("aria-label", texto);
+        titulo.textContent = "";
+        let i = 0;
+        texto.split(" ").forEach(function (palabra, p) {
+          if (p > 0) titulo.appendChild(document.createTextNode(" "));
+          const caja = document.createElement("span");
+          caja.style.whiteSpace = "nowrap";   // las palabras no se cortan
+          caja.setAttribute("aria-hidden", "true");
+          Array.from(palabra).forEach(function (letra) {
+            const s = document.createElement("span");
+            s.className = "letra-niebla";
+            s.textContent = letra;
+            s.style.animationDelay = (0.55 + i * 0.09) + "s";
+            caja.appendChild(s);
+            i++;
+          });
+          titulo.appendChild(caja);
+        });
+      }
+
+      if (sinMovimiento) return;
+
+      /* ---------- 4. Anillo de humo al hacer clic ---------- */
+      const svgNS = "http://www.w3.org/2000/svg";
+      const anillosActivos = [];
+      document.addEventListener("click", function (e) {
+        if (e.detail === 0) return;
+        if (e.target.closest("button, a, input, label, canvas, .tarjeta")) return;
+
+        if (anillosActivos.length >= 3) {
+          const viejo = anillosActivos.shift();
+          if (viejo) viejo.remove();
+        }
+
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute("viewBox", "0 0 200 200");
+        svg.setAttribute("class", "anillo-humo");
+        svg.style.left = e.clientX + "px";
+        svg.style.top = e.clientY + "px";
+        const c = document.createElementNS(svgNS, "circle");
+        c.setAttribute("cx", "100");
+        c.setAttribute("cy", "100");
+        c.setAttribute("r", "62");
+        c.setAttribute("fill", "none");
+        c.setAttribute("stroke", "rgba(228, 232, 228, 0.85)");
+        c.setAttribute("stroke-width", (6 + Math.random() * 6).toFixed(1));
+        // huecos al azar para que parezca un trazo de tinta
+        c.setAttribute("stroke-dasharray", (120 + Math.random() * 160) + " " + (8 + Math.random() * 30));
+        c.setAttribute("transform", "rotate(" + Math.floor(Math.random() * 360) + " 100 100)");
+        c.setAttribute("filter", "url(#humo)");
+        svg.appendChild(c);
+        document.body.appendChild(svg);
+        anillosActivos.push(svg);
+        setTimeout(function () {
+          svg.remove();
+          const idx = anillosActivos.indexOf(svg);
+          if (idx !== -1) anillosActivos.splice(idx, 1);
+        }, 1900);
+      });
+
+      /* ---------- 5. Niebla viva en canvas ---------- */
+      const lienzoNiebla = document.createElement("canvas");
+      lienzoNiebla.className = "niebla-viva";
+      lienzoNiebla.setAttribute("aria-hidden", "true");
+      document.body.appendChild(lienzoNiebla);
+      const cn = lienzoNiebla.getContext("2d");
+
+      // Una "bocanada" de niebla dibujada una sola vez y reutilizada
+      const bocanada = document.createElement("canvas");
+      bocanada.width = bocanada.height = 256;
+      const cb = bocanada.getContext("2d");
+      const grad = cb.createRadialGradient(128, 128, 0, 128, 128, 128);
+      grad.addColorStop(0, "rgba(214, 222, 224, 0.30)");
+      grad.addColorStop(0.45, "rgba(190, 202, 206, 0.12)");
+      grad.addColorStop(1, "rgba(190, 202, 206, 0)");
+      cb.fillStyle = grad;
+      cb.fillRect(0, 0, 256, 256);
+
+      let ancho, alto, nubes = [], rafId = null;
+      const raton = { x: -9999, y: -9999 };
+
+      function crearNubes() {
+        nubes = [];
+        const cantidad = Math.round(ancho / 70) + 10;
+        for (let i = 0; i < cantidad; i++) {
+          const abajo = Math.random() < 0.65; // más niebla a ras del suelo
+          nubes.push({
+            x: Math.random() * ancho,
+            y: abajo ? alto * (0.6 + Math.random() * 0.5) : Math.random() * alto,
+            r: 160 + Math.random() * 300,
+            vx: (0.06 + Math.random() * 0.22) * (Math.random() < 0.5 ? -1 : 1),
+            alfa: 0.35 + Math.random() * 0.55,
+            fase: Math.random() * 1000,
+            ox: 0, oy: 0
+          });
+        }
+      }
+
+      function ajustar() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        ancho = window.innerWidth;
+        alto = window.innerHeight;
+        lienzoNiebla.width = ancho * dpr;
+        lienzoNiebla.height = alto * dpr;
+        cn.setTransform(dpr, 0, 0, dpr, 0, 0);
+        crearNubes();
+      }
+
+      window.addEventListener("resize", ajustar);
+      window.addEventListener("mousemove", function (e) { raton.x = e.clientX; raton.y = e.clientY; });
+      document.addEventListener("mouseleave", function () { raton.x = -9999; raton.y = -9999; });
+      ajustar();
+
+      function animar(t) {
+        if (document.hidden) { rafId = null; return; }
+        cn.clearRect(0, 0, ancho, alto);
+        nubes.forEach(function (n) {
+          n.x += n.vx;
+          if (n.x - n.r > ancho) n.x = -n.r;
+          if (n.x + n.r < 0) n.x = ancho + n.r;
+          const y = n.y + Math.sin(t * 0.00025 + n.fase) * 18;
+
+          // la niebla se aparta suavemente del cursor
+          const dx = n.x - raton.x, dy = y - raton.y;
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const empuje = Math.max(0, 1 - dist / 260) * 60;
+          n.ox += ((dx / dist) * empuje - n.ox) * 0.04;
+          n.oy += ((dy / dist) * empuje - n.oy) * 0.04;
+
+          cn.globalAlpha = n.alfa;
+          cn.drawImage(bocanada, n.x + n.ox - n.r, y + n.oy - n.r * 0.55, n.r * 2, n.r * 1.1);
+        });
+        cn.globalAlpha = 1;
+        rafId = requestAnimationFrame(animar);
+      }
+
+      document.addEventListener("visibilitychange", function () {
+        if (!document.hidden && !rafId) {
+          rafId = requestAnimationFrame(animar);
+        }
+      });
+      rafId = requestAnimationFrame(animar);
+    })();
+  </script>
+</body>
+</html>
